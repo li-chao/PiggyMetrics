@@ -1,18 +1,5 @@
 package com.piggymetrics.statistics.service;
 
-import com.google.common.collect.ImmutableMap;
-import com.piggymetrics.statistics.domain.*;
-import com.piggymetrics.statistics.domain.timeseries.DataPoint;
-import com.piggymetrics.statistics.domain.timeseries.DataPointId;
-import com.piggymetrics.statistics.domain.timeseries.ItemMetric;
-import com.piggymetrics.statistics.domain.timeseries.StatisticMetric;
-import com.piggymetrics.statistics.repository.DataPointRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Instant;
@@ -23,6 +10,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+
+import com.google.common.collect.ImmutableMap;
+import com.piggymetrics.statistics.domain.Account;
+import com.piggymetrics.statistics.domain.Currency;
+import com.piggymetrics.statistics.domain.Item;
+import com.piggymetrics.statistics.domain.Saving;
+import com.piggymetrics.statistics.domain.TimePeriod;
+import com.piggymetrics.statistics.domain.timeseries.DataPoint;
+import com.piggymetrics.statistics.domain.timeseries.DataPointId;
+import com.piggymetrics.statistics.domain.timeseries.ItemMetric;
+import com.piggymetrics.statistics.domain.timeseries.StatisticMetric;
+import com.piggymetrics.statistics.repository.DataPointRepository;
 
 @Service
 public class StatisticsServiceImpl implements StatisticsService {
@@ -40,7 +45,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 	 */
 	@Override
 	public List<DataPoint> findByAccountName(String accountName) {
-		Assert.hasLength(accountName);
+		Assert.hasLength(accountName,"String argument accountName must have length; it must not be null or empty");
 		return repository.findByIdAccount(accountName);
 	}
 

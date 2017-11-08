@@ -1,25 +1,27 @@
 package com.piggymetrics.notification.repository;
 
-import com.google.common.collect.ImmutableMap;
-import com.piggymetrics.notification.NotificationServiceApplication;
-import com.piggymetrics.notification.domain.Frequency;
-import com.piggymetrics.notification.domain.NotificationSettings;
-import com.piggymetrics.notification.domain.NotificationType;
-import com.piggymetrics.notification.domain.Recipient;
-import org.apache.commons.lang.time.DateUtils;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import org.apache.commons.lang.time.DateUtils;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = NotificationServiceApplication.class)
+import com.google.common.collect.ImmutableMap;
+import com.piggymetrics.notification.domain.Frequency;
+import com.piggymetrics.notification.domain.NotificationSettings;
+import com.piggymetrics.notification.domain.NotificationType;
+import com.piggymetrics.notification.domain.Recipient;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class RecipientRepositoryTest {
 
 	@Autowired

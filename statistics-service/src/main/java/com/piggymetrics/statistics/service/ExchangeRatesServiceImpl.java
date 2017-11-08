@@ -1,19 +1,20 @@
 package com.piggymetrics.statistics.service;
 
-import com.google.common.collect.ImmutableMap;
-import com.piggymetrics.statistics.client.ExchangeRatesClient;
-import com.piggymetrics.statistics.domain.Currency;
-import com.piggymetrics.statistics.domain.ExchangeRatesContainer;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.time.LocalDate;
-import java.util.Map;
+import com.google.common.collect.ImmutableMap;
+import com.piggymetrics.statistics.client.ExchangeRatesClient;
+import com.piggymetrics.statistics.domain.Currency;
+import com.piggymetrics.statistics.domain.ExchangeRatesContainer;
 
 @Service
 public class ExchangeRatesServiceImpl implements ExchangeRatesService {
@@ -49,7 +50,7 @@ public class ExchangeRatesServiceImpl implements ExchangeRatesService {
 	@Override
 	public BigDecimal convert(Currency from, Currency to, BigDecimal amount) {
 
-		Assert.notNull(amount);
+		Assert.notNull(amount,"argument amount is required; it must not be null");
 
 		Map<Currency, BigDecimal> rates = getCurrentRates();
 		BigDecimal ratio = rates.get(to).divide(rates.get(from), 4, RoundingMode.HALF_UP);
